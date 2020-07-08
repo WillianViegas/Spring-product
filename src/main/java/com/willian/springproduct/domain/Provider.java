@@ -2,10 +2,13 @@ package com.willian.springproduct.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,14 +22,19 @@ public class Provider implements Serializable{
 	private String name;
 	private String phone;
 	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name= "address_id", referencedColumnName="id")
+	private Adress adress;
+	
 	public Provider() {
 	}
 
-	public Provider(Long id, String name, String phone) {
+	public Provider(Long id, String name, String phone, Adress adress) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.phone = phone;
+		this.adress = adress;
 	}
 
 	public Long getId() {
@@ -51,6 +59,14 @@ public class Provider implements Serializable{
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public Adress getAdress() {
+		return adress;
+	}
+
+	public void setAdress(Adress adress) {
+		this.adress = adress;
 	}
 
 	@Override
