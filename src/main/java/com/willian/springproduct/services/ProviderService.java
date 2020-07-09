@@ -56,4 +56,30 @@ public class ProviderService {
 			throw new DataBaseException(e.getMessage());
 		}
 	}
+	
+	public Provider update(Long id, Provider obj) {
+		try {
+			Provider entity = repository.getOne(id);
+			Adress adress = adressRepository.getOne(id);
+			updateData(entity, adress, obj);
+			return repository.save(entity);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ObjectNotFoundException(id);
+		}
+	}
+
+	private void updateData(Provider entity, Adress adress, Provider obj) {
+		entity.setName(obj.getName());
+		entity.setPhone(obj.getPhone());
+		//instanciando novamente o adress;
+		entity.setAdress(obj.getAdress());
+		
+		/*adress.setZipCode(obj.getAdress().getZipCode());
+		adress.setStreet(obj.getAdress().getStreet());
+		adress.setCity(obj.getAdress().getCity());
+		adress.setState(obj.getAdress().getState());
+		adress.setNumber(obj.getAdress().getNumber());
+		adress.setComplement(obj.getAdress().getComplement());*/
+	}
 }
