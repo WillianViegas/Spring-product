@@ -32,4 +32,8 @@ public class ProviderService {
 	public List<Adress> findAllAdress(){
 		return adressRepository.findAll();
 	}
+	
+	public Provider insert(Provider obj) {
+		return repository.save(obj);
+	}
 }

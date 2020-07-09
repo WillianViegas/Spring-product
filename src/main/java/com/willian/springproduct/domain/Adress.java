@@ -26,7 +26,7 @@ public class Adress implements Serializable {
 	private String number;
 	private String complement;
 	
-	
+	@JsonIgnore
 	@OneToOne(mappedBy="adress")
 	private Provider provider;
 	
