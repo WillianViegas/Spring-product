@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.willian.springproduct.domain.Adress;
 import com.willian.springproduct.domain.Provider;
 import com.willian.springproduct.services.ProviderService;
 
@@ -29,5 +30,11 @@ public class ProviderResource {
 	public ResponseEntity<Provider> findById(@PathVariable Long id){
 		Provider obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping(value="/adress")
+	public ResponseEntity<List<Adress>> findAllAdress(){
+		List<Adress> list = service.findAllAdress();
+		return ResponseEntity.ok().body(list);
 	}
 }
