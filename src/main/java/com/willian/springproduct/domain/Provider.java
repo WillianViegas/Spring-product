@@ -1,6 +1,8 @@
 package com.willian.springproduct.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_provider")
@@ -22,9 +27,14 @@ public class Provider implements Serializable{
 	private String name;
 	private String phone;
 	
+	@JsonIgnore
 	@OneToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name= "address_id", referencedColumnName="id")
 	private Adress adress;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy="providers")
+	private Set<Product> products = new HashSet<>();
 	
 	public Provider() {
 	}
@@ -67,6 +77,14 @@ public class Provider implements Serializable{
 
 	public void setAdress(Adress adress) {
 		this.adress = adress;
+	}
+	
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 
 	@Override

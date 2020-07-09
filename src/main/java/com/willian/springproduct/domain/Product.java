@@ -1,11 +1,16 @@
 package com.willian.springproduct.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +24,12 @@ public class Product implements Serializable{
 	private String name;
 	private String description;
 	private Double price;
+	
+	@ManyToMany
+	@JoinTable(name="tb_product_provider",
+	joinColumns = @JoinColumn(name="product_id"),
+	inverseJoinColumns = @JoinColumn(name= "provider_id"))
+	private Set<Provider> providers = new HashSet<>();
 	
 	public Product() {
 	}
@@ -61,6 +72,14 @@ public class Product implements Serializable{
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	public Set<Provider> getProviders() {
+		return providers;
+	}
+
+	public void setProviders(Set<Provider> providers) {
+		this.providers = providers;
 	}
 
 	@Override
