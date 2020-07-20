@@ -60,8 +60,7 @@ public class ProviderService {
 	public Provider update(Long id, Provider obj) {
 		try {
 			Provider entity = repository.getOne(id);
-			Adress adress = adressRepository.getOne(id);
-			updateData(entity, adress, obj);
+			updateData(entity, obj);
 			return repository.save(entity);
 		}
 		catch(EntityNotFoundException e) {
@@ -69,17 +68,21 @@ public class ProviderService {
 		}
 	}
 
-	private void updateData(Provider entity, Adress adress, Provider obj) {
+	private void updateData(Provider entity, Provider obj) {
 		entity.setName(obj.getName());
 		entity.setPhone(obj.getPhone());
-		//instanciando novamente o adress;
-		entity.setAdress(obj.getAdress());
 		
-		/*adress.setZipCode(obj.getAdress().getZipCode());
+		Adress adress = findAdressById(entity.getAdress().getId());
+		adress.setZipCode(obj.getAdress().getZipCode());
 		adress.setStreet(obj.getAdress().getStreet());
 		adress.setCity(obj.getAdress().getCity());
 		adress.setState(obj.getAdress().getState());
 		adress.setNumber(obj.getAdress().getNumber());
-		adress.setComplement(obj.getAdress().getComplement());*/
+		adress.setComplement(obj.getAdress().getComplement());
+	}
+	
+	public Adress findAdressById(Long id) {
+		Optional<Adress> obj = adressRepository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(id));
 	}
 }

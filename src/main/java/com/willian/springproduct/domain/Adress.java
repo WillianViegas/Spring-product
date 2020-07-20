@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,9 +28,11 @@ public class Adress implements Serializable {
 	private String number;
 	private String complement;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy="adress")
-	private Provider provider;
+//	@JsonIgnore
+//	@MapsId
+//	@OneToOne
+//	@JoinColumn(name= "provider_id")
+//	private Provider provider;
 	
 	public Adress() {
 	}
@@ -100,13 +104,13 @@ public class Adress implements Serializable {
 		this.complement = complement;
 	}
 	
-	public Provider getProvider() {
+/*	public Provider getProvider() {
 		return provider;
 	}
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {

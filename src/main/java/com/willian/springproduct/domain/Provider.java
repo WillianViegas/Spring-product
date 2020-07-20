@@ -28,8 +28,8 @@ public class Provider implements Serializable{
 	private String phone;
 	
 	
-	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name= "address_id", referencedColumnName="id")
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "adress_id")
 	private Adress adress;
 	
 	@JsonIgnore
