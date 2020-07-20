@@ -6,12 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_adress")
@@ -27,12 +22,6 @@ public class Adress implements Serializable {
 	private String state;
 	private String number;
 	private String complement;
-	
-//	@JsonIgnore
-//	@MapsId
-//	@OneToOne
-//	@JoinColumn(name= "provider_id")
-//	private Provider provider;
 	
 	public Adress() {
 	}
@@ -104,14 +93,6 @@ public class Adress implements Serializable {
 		this.complement = complement;
 	}
 	
-/*	public Provider getProvider() {
-		return provider;
-	}
-
-	public void setProvider(Provider provider) {
-		this.provider = provider;
-	}*/
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;

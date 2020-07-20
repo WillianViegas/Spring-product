@@ -27,7 +27,7 @@ public class Provider implements Serializable{
 	private String name;
 	private String phone;
 	
-	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adress_id")
 	private Adress adress;

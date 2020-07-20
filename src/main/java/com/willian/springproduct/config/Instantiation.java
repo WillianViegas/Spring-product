@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Profile;
 import com.willian.springproduct.domain.Adress;
 import com.willian.springproduct.domain.Product;
 import com.willian.springproduct.domain.Provider;
-import com.willian.springproduct.repositories.AdressRepository;
 import com.willian.springproduct.repositories.ProductRepository;
 import com.willian.springproduct.repositories.ProviderRepository;
 
@@ -23,8 +22,6 @@ public class Instantiation implements CommandLineRunner{
 	
 	@Autowired
 	private ProviderRepository providerRepository;
-	
-	@Autowired AdressRepository adressRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
