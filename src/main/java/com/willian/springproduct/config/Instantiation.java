@@ -1,5 +1,6 @@
 package com.willian.springproduct.config;
 
+import java.time.Instant;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.willian.springproduct.domain.Adress;
+import com.willian.springproduct.domain.Order;
 import com.willian.springproduct.domain.Product;
 import com.willian.springproduct.domain.Provider;
+import com.willian.springproduct.enums.OrderStatus;
+import com.willian.springproduct.repositories.OrderRepository;
 import com.willian.springproduct.repositories.ProductRepository;
 import com.willian.springproduct.repositories.ProviderRepository;
 
@@ -22,6 +26,9 @@ public class Instantiation implements CommandLineRunner{
 	
 	@Autowired
 	private ProviderRepository providerRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -49,6 +56,13 @@ public class Instantiation implements CommandLineRunner{
 		p3.getProviders().add(pr2);
 		
 		prodRepository.saveAll(Arrays.asList(p1, p2, p3));
+		
+		Order o1 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.CANCELED.getCode());
+		Order o2 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.OPEN.getCode());
+		Order o3 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.CLOSED.getCode());
+		
+		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		
 	}
 
 }
