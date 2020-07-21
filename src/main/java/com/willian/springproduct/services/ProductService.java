@@ -48,4 +48,23 @@ public class ProductService {
 			throw new DataBaseException(e.getMessage());
 		}
 	}
+	
+	public Product update(Long id, Product obj) {
+		try {
+			Product entity = repository.getOne(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		}
+		catch(EntityNotFoundException e){
+			throw new ObjectNotFoundException(id);
+		}
+	}
+
+	private void updateData(Product entity, Product obj) {
+		entity.setName(obj.getName());
+		entity.setDescription(obj.getDescription());
+		entity.setPrice(obj.getPrice());
+		
+		entity.setProviders(obj.getProviders());
+	}
 }
