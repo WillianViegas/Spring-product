@@ -48,4 +48,21 @@ public class OrderService {
 			throw new DataBaseException(e.getMessage());
 		}
 	}
+	
+	public Order update(Long id, Order obj) {
+		try {
+			Order entity = repository.getOne(id);
+			updateData(entity, obj);
+			return repository.save(entity);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ObjectNotFoundException(id);
+		}
+	
+	}
+
+	private void updateData(Order entity, Order obj) {
+		entity.setStatus(obj.getStatus());
+		entity.setMoment(obj.getMoment());
+	}
 }
