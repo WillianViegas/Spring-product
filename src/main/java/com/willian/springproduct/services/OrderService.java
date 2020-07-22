@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.willian.springproduct.domain.Order;
+import com.willian.springproduct.repositories.OrderItemRepository;
 import com.willian.springproduct.repositories.OrderRepository;
 import com.willian.springproduct.services.exception.DataBaseException;
 import com.willian.springproduct.services.exception.ObjectNotFoundException;

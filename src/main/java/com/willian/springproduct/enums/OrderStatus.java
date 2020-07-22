@@ -1,7 +1,7 @@
 package com.willian.springproduct.enums;
 
 public enum OrderStatus {
-	OPEN(1),
+	OPENED(1),
 	CLOSED(2),
 	CANCELED(3),
 	WAITING_CONFIRMATION(4);

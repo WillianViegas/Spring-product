@@ -62,7 +62,7 @@ public class Instantiation implements CommandLineRunner{
 		prodRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Order o1 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.CANCELED.getCode());
-		Order o2 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.OPEN.getCode());
+		Order o2 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.OPENED.getCode());
 		Order o3 = new Order(null, Instant.parse("2020-06-20T19:53:07Z"), OrderStatus.CLOSED.getCode());
 		
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
