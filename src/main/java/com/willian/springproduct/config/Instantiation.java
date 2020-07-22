@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.willian.springproduct.domain.Adress;
 import com.willian.springproduct.domain.Order;
+import com.willian.springproduct.domain.OrderItem;
 import com.willian.springproduct.domain.Product;
 import com.willian.springproduct.domain.Provider;
 import com.willian.springproduct.enums.OrderStatus;
+import com.willian.springproduct.repositories.OrderItemRepository;
 import com.willian.springproduct.repositories.OrderRepository;
 import com.willian.springproduct.repositories.ProductRepository;
 import com.willian.springproduct.repositories.ProviderRepository;
@@ -29,6 +31,8 @@ public class Instantiation implements CommandLineRunner{
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired OrderItemRepository orderItemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -63,6 +67,11 @@ public class Instantiation implements CommandLineRunner{
 		
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 		
+		OrderItem oi1 = new OrderItem(p1, o1, 3, p1.getPrice());
+		OrderItem oi2 = new OrderItem(p2, o2, 2, p2.getPrice());
+		OrderItem oi3 = new OrderItem(p3, o2, 1, p3.getPrice());
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3));
 	}
 
 }
