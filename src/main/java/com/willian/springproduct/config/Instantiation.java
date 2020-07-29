@@ -32,7 +32,8 @@ public class Instantiation implements CommandLineRunner{
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	@Autowired OrderItemRepository orderItemRepository;
+	@Autowired 
+	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -67,9 +68,9 @@ public class Instantiation implements CommandLineRunner{
 		
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 		
-		OrderItem oi1 = new OrderItem(p1, o1, 3, p1.getPrice());
-		OrderItem oi2 = new OrderItem(p2, o2, 2, p2.getPrice());
-		OrderItem oi3 = new OrderItem(p3, o2, 1, p3.getPrice());
+		OrderItem oi1 = new OrderItem(o1, p1, 3, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o2, p2, 2, p2.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 1, p3.getPrice());
 		
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3));
 	}

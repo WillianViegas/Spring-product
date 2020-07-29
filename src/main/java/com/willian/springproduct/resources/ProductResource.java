@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.willian.springproduct.domain.Product;
 import com.willian.springproduct.services.ProductService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value="/products")
 public class ProductResource {
@@ -26,18 +28,21 @@ public class ProductResource {
 	private ProductService service;
 	
 	@GetMapping
+	@ApiOperation(value="Return a list of products")
 	public ResponseEntity<List<Product>> findAll(){
 		List<Product> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value="{id}")
+	@ApiOperation(value="Return a product by id")
 	public ResponseEntity<Product> findById(@PathVariable Long id){
 		Product obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
+	@ApiOperation(value="Insert a product")
 	public ResponseEntity<Product> insert(@RequestBody Product obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -46,12 +51,14 @@ public class ProductResource {
 	}
 	
 	@DeleteMapping(value="{id}")
+	@ApiOperation(value="Delete a product by id")
 	public ResponseEntity<Product> deleteByid(@PathVariable Long id){
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping(value="{id}")
+	@ApiOperation(value="Update a product by id")
 	public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);

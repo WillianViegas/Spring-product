@@ -18,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.willian.springproduct.domain.Order;
 import com.willian.springproduct.services.OrderService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value="/orders")
 public class OrderResource {
@@ -26,18 +28,21 @@ public class OrderResource {
 	private OrderService service;
 	
 	@GetMapping
+	@ApiOperation(value="Return a list of orders")
 	public ResponseEntity<List<Order>> findAll() {
 		List<Order> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value="{id}")
+	@ApiOperation(value="Return an order by id")
 	public ResponseEntity<Order> findById(@PathVariable Long id){
 		Order obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
+	@ApiOperation(value="Insert a new order")
 	public ResponseEntity<Order> insert(@RequestBody Order obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -46,12 +51,14 @@ public class OrderResource {
 	}
 	
 	@DeleteMapping(value="{id}")
+	@ApiOperation(value="Delete an order by id")
 	public ResponseEntity<Order> deleteById(@PathVariable Long id){
 		service.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping(value="{id}")
+	@ApiOperation(value="Update an order by id")
 	public ResponseEntity<Order> update(@PathVariable Long id, @RequestBody Order obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
