@@ -70,7 +70,6 @@ public class Provider implements Serializable{
 		this.phone = phone;
 	}
 	
-	@JsonIgnore
 	public Adress getAdress() {
 		return adress;
 	}
