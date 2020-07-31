@@ -27,7 +27,6 @@ public class Provider implements Serializable{
 	private String name;
 	private String phone;
 	
-	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "adress_id")
 	private Adress adress;
@@ -71,6 +70,7 @@ public class Provider implements Serializable{
 		this.phone = phone;
 	}
 	
+	@JsonIgnore
 	public Adress getAdress() {
 		return adress;
 	}
@@ -79,6 +79,7 @@ public class Provider implements Serializable{
 		this.adress = adress;
 	}
 	
+	@JsonIgnore
 	public Set<Product> getProducts() {
 		return products;
 	}

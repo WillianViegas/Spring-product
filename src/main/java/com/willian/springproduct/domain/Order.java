@@ -72,7 +72,7 @@ public class Order implements Serializable{
 		return items;
 	}
 	
-	public void setItems(Set<OrderItem> items) {
+	public void setItems(Set<OrderItem> items){
 		this.items = items;
 	}
 	

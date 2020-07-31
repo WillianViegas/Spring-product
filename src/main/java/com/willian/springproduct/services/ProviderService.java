@@ -6,12 +6,14 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.willian.springproduct.domain.Adress;
 import com.willian.springproduct.domain.Provider;
+import com.willian.springproduct.dto.ProviderDTO;
 import com.willian.springproduct.repositories.AdressRepository;
 import com.willian.springproduct.repositories.ProviderRepository;
 import com.willian.springproduct.services.exception.DataBaseException;
@@ -85,4 +87,8 @@ public class ProviderService {
 		Optional<Adress> obj = adressRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(id));
 	}
+	
+/*	public Provider fromDTO(ProviderDTO objDto) {
+	//	return new Provider(objDto.getId(), objDto.getName(), objDto.getPhone());
+	}*/
 }

@@ -55,7 +55,7 @@ public class ProviderResource {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(obj.getId()).toUri();
-		return ResponseEntity.created(uri).body(obj);	
+		return ResponseEntity.created(uri).build();	
 	}
 	
 	@DeleteMapping(value="{id}")
