@@ -5,7 +5,7 @@ A Spring Boot project to manage orders and products of providers.
 To evolve my skills with Spring Boot and construct somenthing usefull and cool.
 
 # Screenshots
-![diagrama_spring](diagrama_spring.png)
+![diagrama](diagrama.png)
 
 # Tech/framework used
 JDK - 11.0.7 and Spring Boot with Spring Tool Suit 4 + PostgreSQL + Swagger
